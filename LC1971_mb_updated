@@ -1,0 +1,22 @@
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        
+        graph = {}
+        for i in range(0, len(edges)):
+            graph[i] = set(edges[i])
+            
+        visited = set()    
+        def dfs(node):
+            if node == destination:
+                return True
+            
+            if node not in visited:
+                visited.add(node)
+                for next in graph[node]:
+                    result = dfs(next)
+                    if result:
+                        return True
+                else:
+                        return False
+        return dfs(source)
+        
