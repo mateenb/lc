@@ -1,0 +1,27 @@
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        from collections import defaultdict
+        graph = defaultdict(list)
+        
+        
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+            
+            
+        visited = set()    
+        def dfs(node):
+            
+            if node == destination:
+                return True
+            
+            
+            if node not in visited:
+                visited.add(node)
+        
+                for next in graph[node]:
+                    result = dfs(next)
+        
+                if result:
+                    return True
+        return dfs(source)
