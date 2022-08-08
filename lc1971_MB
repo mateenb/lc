@@ -1,0 +1,23 @@
+def validPath(n, edges, source, destination):
+    
+    graph = {}
+    for i in range(0, len(edges)):
+        graph[i] = set(edges[i])
+    start = source
+    
+    def dfs(graph, start, visited = None):
+        
+        print(start)
+        if visited is None:
+            visited = set()
+        visited.add(start)
+    
+        if start == destination:
+            return True
+        for next in graph[start] - visited:
+                dfs(graph, next, visited)
+        return print(visited)
+    return dfs
+                
+        
+    
